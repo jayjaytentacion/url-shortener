@@ -40,7 +40,7 @@ class Linkshortener(CreateAPIView):
                 #sends a request to create a new entry
                 return self.create(request,short_url,*args, **kwargs) 
         #if the long link already exists,appends the domain and returns a response
-        short_url='http://j-links.herokuapp.com'+set[0].short_url
+        short_url='http://j-links.herokuapp.com/'+set[0].short_url
         return Response({'long_url':long_url,'short_url':short_url})
 
 
@@ -54,7 +54,7 @@ class Linkshortener(CreateAPIView):
         self.perform_create(serializer,short_url)
         headers = self.get_success_headers(serializer.data)
         return Response({'long_url':serializer.data['long_url'],
-        'short_url':'http://j-links.herokuapp.com'+serializer.data['short_url']}, status=status.HTTP_201_CREATED, headers=headers)
+        'short_url':'http://j-links.herokuapp.com/'+serializer.data['short_url']}, status=status.HTTP_201_CREATED, headers=headers)
 
 
     def perform_create(self, serializer,short_url):
