@@ -42,7 +42,7 @@ class Linkshortener(CreateAPIView):
                 #sends a request to create a new entry
                 return self.create(request,short_url,*args, **kwargs) 
         #if the long link already exists,appends the domain and returns a response
-        short_url='https://j-links.herokuapp.com/'+set[0].short_url
+        short_url='https://j-links.herokuapp.com/'+set.short_url
         return Response({'long_url':long_url,'short_url':short_url})
 
 
