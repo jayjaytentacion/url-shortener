@@ -72,4 +72,9 @@ def redirect_view(request,short_url):
         return  HttpResponse('does not exist')
     if obj is not None:
         return redirect(obj.long_url)  
-           
+      
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'link_shortener': reverse('links', request=request, format=format),
+    })
