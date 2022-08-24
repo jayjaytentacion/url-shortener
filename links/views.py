@@ -1,4 +1,4 @@
-
+from rest_framework.decorators import api_view
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
 from links.models import Link
