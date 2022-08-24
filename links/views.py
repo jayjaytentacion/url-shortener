@@ -1,4 +1,4 @@
-
+from rest_framework.decorators import api_view
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
 from links.models import Link
@@ -9,6 +9,8 @@ from rest_framework import status
 from .utils import generate_random_id
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from rest_framework.reverse import reverse
+
 
 # Create your views here.
 
@@ -40,7 +42,7 @@ class Linkshortener(CreateAPIView):
                 #sends a request to create a new entry
                 return self.create(request,short_url,*args, **kwargs) 
         #if the long link already exists,appends the domain and returns a response
-        short_url='https://j-links.herokuapp.com/'+set[0].short_url
+        short_url='https://j-links.herokuapp.com/'+set.short_url
         return Response({'long_url':long_url,'short_url':short_url})
 
 
@@ -72,4 +74,9 @@ def redirect_view(request,short_url):
         return  HttpResponse('does not exist')
     if obj is not None:
         return redirect(obj.long_url)  
-           
+      
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'link_shortener': reverse('links', request=request, format=format),
+    })
