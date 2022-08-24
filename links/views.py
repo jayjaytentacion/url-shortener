@@ -9,6 +9,8 @@ from rest_framework import status
 from .utils import generate_random_id
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from rest_framework.reverse import reverse
+
 
 # Create your views here.
 
