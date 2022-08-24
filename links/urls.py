@@ -3,6 +3,7 @@ from .import views
 
 
 urlpatterns=[
-    path('',views.Linkshortener.as_view(),name='link-shortener'),
+    Path('',views.api_root)
+    path('shorten/',views.Linkshortener.as_view(),name='links'),
     path('<str:short_url>', views.redirect_view)
 ]
