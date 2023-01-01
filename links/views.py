@@ -56,7 +56,7 @@ class Linkshortener(CreateAPIView):
         self.perform_create(serializer,short_url)
         headers = self.get_success_headers(serializer.data)
         return Response({'long_url':serializer.data['long_url'],
-        'short_url':'https://j-links.herokuapp.com/'+serializer.data['short_url']}, status=status.HTTP_201_CREATED, headers=headers)
+        'short_url':'https://urlshorten.up.railway.app/'+serializer.data['short_url']}, status=status.HTTP_201_CREATED, headers=headers)
 
 
     def perform_create(self, serializer,short_url):
